@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taman Bunga 🌸</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ffd6e7,#ffeef6,#dff7ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#54243c;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    text-align:center;
+    padding:45px 25px;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:30px;
+    box-shadow:0 20px 60px rgba(100,50,80,.2);
+    animation:muncul 1.2s ease;
+}
+
+h1{
+    font-size:clamp(35px,8vw,70px);
+    margin-bottom:10px;
+    animation:melayang 3s ease-in-out infinite;
+}
+
+h2{
+    font-size:clamp(22px,5vw,35px);
+    margin-bottom:15px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+button{
+    border:none;
+    padding:14px 28px;
+    border-radius:50px;
+    background:#ff6fa5;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(255,80,140,.3);
+}
+
+button:hover{
+    transform:scale(1.08);
+    background:#ff4d91;
+}
+
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:25px;
+    animation:jatuh linear forwards;
+    pointer-events:none;
+}
+
+@keyframes jatuh{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@keyframes melayang{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+@keyframes muncul{
+    from{
+        opacity:0;
+        transform:scale(.8) translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+@media(max-width:500px){
+    .container{
+        padding:35px 18px;
+    }
+
+    p{
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🌸</h1>
+    <h2>Taman Bunga</h2>
+
+    <p>
+        Selamat datang di taman bunga kecil ini.
+        Semoga keindahan bunga membawa suasana
+        yang tenang dan menyenangkan. 🌷
+    </p>
+
+    <a href="bunga.html">
+      <!--Tab to edit-->
+    <button onclick="bunga()">Klik untuk bunga 🌺</button></a>
+</div>
+
+<script>
+function bunga(){
+    const bunga = ["🌸","🌺","🌷","🌹","🌼","💮"];
+
+    for(let i=0;i<25;i++){
+        const el=document.createElement("div");
+
+        el.className="flower";
+        el.innerHTML=bunga[Math.floor(Math.random()*bunga.length)];
+
+        el.style.left=Math.random()*100+"vw";
+        el.style.fontSize=(18+Math.random()*25)+"px";
+        el.style.animationDuration=(3+Math.random()*5)+"s";
+
+        document.body.appendChild(el);
+
+        setTimeout(()=>{
+            el.remove();
+        },8000);
+    }
+}
+
+/* bunga otomatis */
+setInterval(bunga,5000);
+</script>
+
+</body>
+</html>
